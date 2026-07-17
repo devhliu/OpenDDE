@@ -42,6 +42,7 @@ def test_build_inference_config_applies_model_specific_defaults():
     assert cfg.model.template_embedder.n_blocks == 2
     assert cfg.sample_diffusion.N_step == 200
     assert cfg.confidence.distogram.no_bins == 96
+    assert cfg.need_atom_confidence is True
 
 
 def test_legacy_config_dict_without_device_uses_schema_default():
@@ -106,6 +107,7 @@ def test_get_default_runner_config_build_does_not_mutate_base_defaults(monkeypat
     assert runner.configs.c_z == 384
     assert runner.configs.model.N_cycle == 2
     assert runner.configs.sample_diffusion.N_step == 3
+    assert runner.configs.need_atom_confidence is True
     assert configs_base["model"]["N_cycle"] == 10
     assert configs_base["confidence"]["distogram"]["no_bins"] == 96
 

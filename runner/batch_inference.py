@@ -277,7 +277,7 @@ def get_default_runner(
     deterministic: bool = False,
     use_template: bool = False,
     use_rna_msa: bool = False,
-    need_atom_confidence: bool = False,
+    need_atom_confidence: bool = True,
     kalign_binary_path: Optional[str] = None,
     use_tfg_guidance: bool = False,
     foldcp_mode: Literal["single", "distributed"] = "single",
@@ -410,7 +410,7 @@ def inference_jsons(
     use_template: bool = False,
     use_rna_msa: bool = False,
     msa_server_mode: Optional[str] = None,
-    need_atom_confidence: bool = False,
+    need_atom_confidence: bool = True,
     kalign_binary_path: Optional[str] = None,
     use_tfg_guidance: bool = False,
     hmmsearch_binary_path: Optional[str] = None,
@@ -662,7 +662,7 @@ def inference_jsons(
 @click.option(
     "--need_atom_confidence",
     type=bool,
-    default=False,
+    default=True,
     help="Whether to compute atom-level confidence scores.",
 )
 @click.option(

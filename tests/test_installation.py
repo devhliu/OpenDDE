@@ -260,6 +260,15 @@ raise SystemExit(doctor_result.exit_code)
         self.assertEqual(set(dtype_type.choices), {"bf16", "fp32"})
         self.assertEqual(dtype_options[0].default, "fp32")
 
+        atom_confidence_options = [
+            parameter
+            for parameter in predict_command.params
+            if isinstance(parameter, click.Option)
+            and parameter.name == "need_atom_confidence"
+        ]
+        self.assertEqual(len(atom_confidence_options), 1)
+        self.assertIs(atom_confidence_options[0].default, True)
+
     def test_legacy_module_entry_point_uses_the_same_commands(self):
         """The documented ``python -m`` invocation must remain functional."""
         result = subprocess.run(
